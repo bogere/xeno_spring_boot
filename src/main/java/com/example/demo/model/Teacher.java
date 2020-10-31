@@ -24,7 +24,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
  */
 
 @Entity
-@Table(name = "students")
+@Table(name = "teachers")
 @EntityListeners(AuditingEntityListener.class)
 public class Teacher {
 	
@@ -45,9 +45,9 @@ public class Teacher {
     private String gender;
     
    
-    @Temporal(TemporalType.DATE)
-    @Column(name = "joined_date", nullable = false)
-    private Date joinedDate;
+    //@Temporal(TemporalType.DATE)
+    //@Column(name = "joined_date", nullable = false)
+    //private Date joinedDate;
     
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -149,18 +149,18 @@ public class Teacher {
    *
    * @return the joined_date
    */
-  public Date getJoinDate() {
-        return joinedDate;
-    }
+  //public Date getJoinDate() {
+        //return joinedDate;
+    //}
 
   /**
    * Sets joined_date.
    *
    * @param joinedDate the joined_date
    */
-  public void setJoinDate(Date joinedDate) {
-        this.joinedDate = joinedDate;
-    }
+  //public void setJoinDate(Date joinedDate) {
+        //this.joinedDate = joinedDate;
+    //}
 
   /**
    * Gets created at.
@@ -241,7 +241,7 @@ public class Teacher {
                 ",address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
                 ", gender='" + gender + '\'' +
-                ", joinedDate='" + joinedDate + '\'' +
+                //", joinedDate='" + joinedDate + '\'' +
                 ", createdAt=" + createdAt +
                 ", createdBy='" + createdBy + '\'' +
                 ", updatedAt=" + updatedAt +

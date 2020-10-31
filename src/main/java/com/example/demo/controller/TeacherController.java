@@ -7,6 +7,7 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Teacher;
 import com.example.demo.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,8 +65,16 @@ public class TeacherController {
      * @return the teacher
      */
     @PostMapping("/teachers")
-    public Teacher createTeacher(@Valid @RequestBody Teacher teacher) {
+    /*public Teacher createTeacher(@Valid @RequestBody Teacher teacher) {
       return teacherRepository.save(teacher);
+    }*/
+    public ResponseEntity<Object> createTeacher(@Valid @RequestBody Teacher teacher) throws Exception{
+    
+    	//DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    	//Date joinDate = df.parse(teacher.getJoinDate().toString());
+    	//teacher.setJoinDate(joinDate);
+    	teacherRepository.save(teacher);
+    	return new ResponseEntity<>("Teacher created successful", HttpStatus.CREATED);
     }
   
     /**
@@ -86,7 +95,7 @@ public class TeacherController {
               .findById(teacherId)
               .orElseThrow(() -> new ResourceNotFoundException("Teacher not found on :: " + teacherId));
   
-      teacher.setJoinDate(teacherDetails.getJoinDate());
+      //teacher.setJoinDate(teacherDetails.getJoinDate());
       teacher.setContact(teacherDetails.getContact());
       teacher.setAddress(teacherDetails.getAddress());
       teacher.setUpdatedAt(new Date());
