@@ -5,9 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,8 +35,13 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "user_id", nullable = false)
-    private int userId;
+     @Column(name = "user_id", nullable = false)
+     private long userId;
+     
+	/*@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
+	*/
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -233,6 +241,38 @@ public class Teacher {
   public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
+  
+  /*
+   *  Dealing with mapping to the User model
+   */
+  /*public User getUser() {
+	  return this.user;
+  }
+  
+  public void setUser(User user) {
+	 this.user = user; 
+  }
+  */
+  
+  /**
+   * Gets userId.
+   *
+   * @return the userId
+   */
+  public long getUserId() {
+        return id;
+    }
+
+  /**
+   * Sets userId
+   *
+   * @param userId the userId
+   */
+  public void setUserId(long userId) {
+        this.userId = userId;
+    }
+  
+  
 
     @Override
     public String toString() {

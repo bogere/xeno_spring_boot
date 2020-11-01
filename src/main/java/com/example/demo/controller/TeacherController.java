@@ -5,7 +5,10 @@ package com.example.demo.controller;
 
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Teacher;
+import com.example.demo.model.User;
 import com.example.demo.repository.TeacherRepository;
+import com.example.demo.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +33,9 @@ public class TeacherController {
 
     @Autowired
     private TeacherRepository teacherRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
   
     /**
      * Get all teachers list.
@@ -38,7 +44,16 @@ public class TeacherController {
      */
     @GetMapping("/teachers")
     public List<Teacher> getAllTeachers() {
-      return teacherRepository.findAll();
+      //return teacherRepository.findAll();
+    	List<Teacher> teacherList = teacherRepository.findAll();
+    	
+    	for(Object teacher: teacherList) {
+    	    System.out.print(teacher);
+    	    //User user = userRepository.findById(teacher.userId);
+    	    
+    	}
+    	
+    	return teacherList;
     }
   
     /**

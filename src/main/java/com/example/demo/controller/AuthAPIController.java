@@ -97,20 +97,6 @@ public class AuthAPIController {
 		return "Bearer " + token;
 	}
 	
-	//sign up..
-	/*@PostMapping("/auth/signup") //test this tomorrow before submission
-	public ApiResponse<User> registerUser(@Valid @RequestBody User user){
-		//check if user exists in the database.
-				User existingUser = 
-						userRepository.findByUsername((user.getUsername()));
-			 if(existingUser != null) {
-				return new ApiResponse<>(HttpStatus.IM_USED, "Username already taken", user.getUsername() );  
-			 }else {
-				 //hash the password before saving user.
-				 user.setPassword(bcryptEncoder.encode(user.getPassword()));
-				 return new ApiResponse<>(HttpStatus.CREATED, "User saved successful", userRepository.save(user));
-			 }
-	}*/
 	/**
 	   * Create user map.
 	   *

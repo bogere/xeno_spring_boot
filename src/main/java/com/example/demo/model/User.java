@@ -61,6 +61,12 @@ public class User {
     @Column(name = "updated_by", nullable = false)
     @LastModifiedBy
     private String updatedBy;
+    
+    //mapping to the Teacher model.
+    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private Teacher teacherDetails;
+    */
 
   /**
    * Gets id.
@@ -261,6 +267,19 @@ public class User {
   public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
+  
+  //what about dealing with teacher details mapping.
+  /*public void setTeacherDetails(Teacher teacherDetails) {
+	  if (teacherDetails == null) {
+          if (this.teacherDetails != null) {
+        	  this.teacherDetails.setUser(null);
+          }
+      }
+      else {
+          teacherDetails.setUser(this);
+      }
+      this.teacherDetails = teacherDetails;
+  }*/
 
     @Override
     public String toString() {

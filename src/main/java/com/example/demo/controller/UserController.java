@@ -61,21 +61,22 @@ public class UserController {
 
   /**
    * Create user user.
-   *
+   * This cater for students and teacher user when authenticated.
    * @param user the user
    * @return the user
    */
-  //@PostMapping("/users")
-  /*public User createUser(@Valid @RequestBody User user) {
+   @PostMapping("/users")
+   public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 	//check if the user already exists in the database.
 	 User existingUser = userRepository.findByEmail(user.getEmail());
 	 if(existingUser != null) {
-		return HttpStatus.PRECONDITION_FAILED.body(user.getEmail()); 
+		 return new ResponseEntity<>("User is already registered", HttpStatus.PRECONDITION_FAILED);
 	 }else {
-		 
+		user.setPassword(bcryptEncoder.encode(user.getPassword()));
+		User savedUser = userRepository.save(user);
+		return new ResponseEntity<>(savedUser ,HttpStatus.CREATED);
 	 }
-    return userRepository.save(user);
-  }*/
+  }
  
 
   /**
