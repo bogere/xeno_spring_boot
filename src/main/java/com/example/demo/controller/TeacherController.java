@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 /**
@@ -45,13 +46,21 @@ public class TeacherController {
     @GetMapping("/teachers")
     public List<Teacher> getAllTeachers() {
       //return teacherRepository.findAll();
-    	List<Teacher> teacherList = teacherRepository.findAll();
+    	 List<Teacher> teacherList = teacherRepository.findAll();
     	
-    	for(Object teacher: teacherList) {
+    	/*for(Object teacher: teacherList) {
     	    System.out.print(teacher);
     	    //User user = userRepository.findById(teacher.userId);
     	    
-    	}
+    	}*/
+    	 //teacherList.forEach(teacher->System.out.println(teacher.getUserId()));
+    	 //teacherList.forEach(teacher->System.out.println(userRepository.findById(teacher.getUserId())));
+    	  teacherList.forEach(teacher->{
+    		  long userId = teacher.getUserId();
+    		  System.out.println("UserId for" + userId);
+    		  Optional<User> existingUser = userRepository.findById(userId);
+    		  System.out.print(existingUser);
+    	  });
     	
     	return teacherList;
     }
